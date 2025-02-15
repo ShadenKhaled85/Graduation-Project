@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Images</title>
+    <link rel="stylesheet" href="../static/css/display.css">
+    <link rel="icon" href="../static/images/logoo.png" type="image/x-icon">
+</head>
+</html>
+<body>
+    <div class="container">
+        <div class="topnav" id="myTopnav">
+            <div class="logo"> VISUALIZEVIBE</div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/search" class="active">Search </a>
+                <a href="/about">About</a>
+            <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+                <i class="fa fa-bars"></i>
+            </a>
+            </nav>
+            
+        </div>
+        <h1>Images</h1>
+        <div class="slider" id="photoGallery">
+            {% for result in ranked_results %}
+            <div class="photo-container">
+                <img src="{{ result[0] }}" alt="Image">
+            </div>
+            {% endfor %}
+        </div>
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+        
+        <script>
+            let slideIndex = 0;
+            showSlides(slideIndex);
+        
+            function changeSlide(n) {
+                showSlides(slideIndex += n);
+            }
+        
+            function showSlides(n) {
+                const slides = document.getElementsByClassName("photo-container");
+                if (n >= slides.length) { slideIndex = 0 }
+                if (n < 0) { slideIndex = slides.length - 1 }
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slides[slideIndex].style.display = "block";
+            }
+        
+            function toggleMenu() {
+                const topnav = document.getElementById("myTopnav");
+                topnav.classList.toggle("responsive");
+            }
+        </script>
+        
+</body>
+</html>

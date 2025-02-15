@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Search</title>
+	<link rel="stylesheet" href="../static/css/search.css">
+	<link rel="icon" href="../static/images/logoo.png" type="image/x-icon">
+
+</head>
+
+<body>
+	
+	<div>
+		<div class="topnav" id="myTopnav">
+			<div class="logo"> VISUALIZEVIBE</div>
+			<nav>
+			  <a href="/">Home</a>
+			  <a href="/search" class="active">Search </a>
+			  <a href="/about">About</a>
+			  <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+				  <i class="fa fa-bars"></i>
+			  </a>
+			</nav>
+			 
+		  </div>
+	  </div>
+		<div class="hero">
+			<div class="content">
+				
+				<div class="sentence "><h2>VISUALIZEVIBE </h2>
+					<P>
+						It allows you to search for anything you want in interior design.
+					</P></div>
+			</div>
+	
+			<div id="myForm" class="container">
+				<form class="formGroup" id="searchForm" action="/searchengine" method="post" enctype="multipart/form-data">
+					<div class="form-group">
+						<label for="file-upload" class="custom-file-upload">
+							Pick an image
+						</label>
+						<input id="file-upload" class="form-control" name="image_query_path" type="file" placeholder="Enter Name"
+							onchange="getImagePreview(event)" />
+					</div>
+					<div id="preview"></div>
+					<div class="form-group">
+						<label for="text">Enter Text:</label>
+						<input type="text" id="text" name="text" min="5" required>
+					</div>
+					<div class="form-group">
+						<label for="numImages">Enter the number of images:</label>
+						<input type="number" id="numImages" name="numImages" min="1" required>
+					</div>
+					<button class="button1" type="submit">Submit</button>
+				</form>
+			</div>
+			
+	
+	
+				</form>
+	
+			</div>
+	
+		</div>
+		</div>
+	
+</div>
+	
+
+	<script>
+		function getImagePreview(event)
+	{
+		var image=URL.createObjectURL(event.target.files[0]);
+    	var imagediv= document.getElementById('preview');
+    	var newimg=document.createElement('img');
+    	imagediv.innerHTML='';
+    	newimg.src=image;
+    	newimg.width="300";
+    	imagediv.appendChild(newimg);
+	}
+		function toggleMenu() {
+			const topnav = document.getElementById("myTopnav");
+			topnav.classList.toggle("responsive");
+		}
+	</script>
+</body>
+
+</html>
